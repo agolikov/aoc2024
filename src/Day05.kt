@@ -1,24 +1,23 @@
-import java.io.File
+fun main() {
+    val day = 5
 
-
-fun check_order( pairs: MutableList<Pair<Int,Int>>, nums : List<Int>) : Int
-{
-    var errors : Int = 0
-    val mutableSet : MutableSet<Int> = mutableSetOf()
-    for (j in nums.indices) {
-        for (p in pairs.indices){
-            if (pairs[p].first == nums[j]){
-                if (mutableSet.contains(pairs[p].second)) {
-                    errors += 1
+    fun check_order( pairs: MutableList<Pair<Int,Int>>, nums : List<Int>) : Int
+    {
+        var errors : Int = 0
+        val mutableSet : MutableSet<Int> = mutableSetOf()
+        for (j in nums.indices) {
+            for (p in pairs.indices){
+                if (pairs[p].first == nums[j]){
+                    if (mutableSet.contains(pairs[p].second)) {
+                        errors += 1
+                    }
                 }
             }
+            mutableSet.add(nums[j]);
         }
-        mutableSet.add(nums[j]);
+        return errors
     }
-    return errors
-}
 
-fun main() {
     fun part1(lines: List<String>): Int {
         var ind = 0
         var pairs : MutableList<Pair<Int,Int>> = mutableListOf()
@@ -90,10 +89,10 @@ fun main() {
     }
 
 
-    val testInput = readInput("Day05_test")
+    val testInput = readTestInputLines(day)
     check(part1(testInput) == 143)
 
-    val input = readInput("Day05")
+    val input = readAllInputLines(day)
     part1(input).println()
     part2(input).println()
 }
